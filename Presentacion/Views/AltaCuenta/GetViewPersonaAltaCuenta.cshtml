@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "GetViewPersonaAltaCuenta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Espacio vacío o contenido adicional -->
+            </div>
+            <div class="col-lg-6">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h2 class="fw-bold">Cuentas Asociadas</h2>
+                    </div>
+                    <div class="col-lg-4 text-end">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Agregar cuenta
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-primary">
+                                    <tr class="align-middle text-center">
+                                        <th>#</th>
+                                        <th>Numero Cuenta</th>
+                                        <th>Banco</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table_body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script>
+        $(document).ready(function () {
+            $('#tablePersona tbody').on('click', 'tr.group', function () {
+                var data = $("tablePersona").DataTable().row(this).data();
+            });
+
+            //$(document).on('click', '.btn-primary', function (e) {
+            //    e.preventDefault();
+            //    var url = $(this).attr('href');
+            //    var idPersona = new URL(url).searchParams.get('IdPersona');
+            //    GetAllCuentas(idPersona);
+            //});
+        });
+
+        @*function GetAllCuentas(idPersona) {
+            $.ajax({
+                url: '@Url.Action("GetAllCuentaByIdPersona")',
+                type: 'GET',
+                datatype: 'JSON',
+                data: { IdPersona: idPersona },
+                success: function (result) {
+                    var $tbody = $('#table_body');
+                    $tbody.empty();
+
+                    $.each(result, function (index, cuenta) {
+                        var $row = '<tr>' +
+                            '<td>' + cuenta.IdCuenta + '</td>' +
+                            '<td>' + cuenta.NumeroCuenta + '</td>' +
+                            '<td>' + cuenta.TipoBanco.NombreTipoBanco + '</td>' +
+                            '<td>' + '<button id="btnDelete" class="btn btn-danger" data-id="' + cuenta.IdCuenta + '">Eliminar</button>' + '</td>' +
+                            '<td>' + '<button id="btnUpdate" class="btn btn-warning" data-id="' + cuenta.IdCuenta + '" style="margin-left: 2px;">Editar</button>' + '</td>' +
+                            '</tr>';
+                        $tbody.append($row);
+                    });
+
+
+                },
+                error: function (result) {
+                }
+            })
+        }*@
+    </script>
+
+</body>
+</html>
+
